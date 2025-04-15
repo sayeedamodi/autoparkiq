@@ -1,0 +1,108 @@
+/* Main container for My Bookings page */
+.my-bookings-container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding-top: 120px;
+    padding-bottom: 8px;
+  }
+  
+  /* Title Styling */
+  .title {
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: bold;
+    font-size: 32px;
+    color: #333;
+  }
+  
+  /* Booking Cards */
+  .booking-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  /* Each individual booking card */
+  .booking-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow-wrap: break-word;
+  }
+  
+  .booking-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Card Content */
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Individual item in the card (Car, Entry Date, etc.) */
+  .card-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .card-item strong {
+    font-weight: 600;
+  }
+  
+  /* Icon colors */
+  .text-green {
+    color: #34d399; /* Green for Entry date */
+  }
+  
+  .text-red {
+    color: #ef4444; /* Red for Exit date */
+  }
+  
+  .text-purple {
+    color: #6b21a8; /* Purple for Area */
+  }
+  
+  .text-yellow {
+    color: #f59e0b; /* Yellow for Amount */
+  }
+  
+  /* Loader container */
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+  
+  /* Error message */
+  .error-message {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ef4444;
+    font-size: 16px;
+  }
+  
+  /* No bookings message */
+  .no-bookings-message {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+  }
+  
+  /* Booking code */
+  .booking-code {
+    font-size: 14px;
+    color: #888;
+    margin-top: 15px;
+  }
+  
