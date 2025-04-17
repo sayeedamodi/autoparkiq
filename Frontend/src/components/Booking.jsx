@@ -5,6 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import jsPDF from "jspdf";
 import BookingSuccess from "./BookingSuccess";
+import VideoView from "./Videofeed";
 import QRCode from "qrcode";
 import {
   Dialog,
@@ -126,24 +127,45 @@ function Booking({ code }) {
   };
 
   // Filter available slots
-  const filterAvailableSlots = async () => {
-    const slots = [1, 2, 3, 4];
-    const filteredSlots = [];
-    for (const slot of slots) {
-      const isAvailable = await checkSlotAvailability(formData.area, slot);
-      if (isAvailable) {
-        filteredSlots.push(slot);
-      }
-    }
-    setAvailableSlots(filteredSlots);
-  };
-
-  // Update available slots when area changes
   useEffect(() => {
+    let interval;
+  
+    const filterAvailableSlots = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/parking-status');
+        const data = await response.json();
+  
+        const freeSlots = data
+          .filter(slot => slot.status === 'Free')
+          .map(slot => slot.space);
+  
+        const filteredSlots = [];
+        for (const slot of freeSlots) {
+          const isAvailable = await checkSlotAvailability(formData.area, slot);
+          if (isAvailable) {
+            filteredSlots.push(slot);
+          }
+        }
+  
+        setAvailableSlots(filteredSlots);
+      } catch (error) {
+        console.error('Error fetching parking status:', error);
+      }
+    };
+  
     if (formData.area) {
-      filterAvailableSlots();
+      filterAvailableSlots(); // initial call
+      interval = setInterval(filterAvailableSlots, 1000); // then every second
     }
+  
+    return () => {
+      if (interval) {
+        clearInterval(interval); // clean up on unmount or area change
+      }
+    };
   }, [formData.area]);
+  
+  
 
   // Update current date time
   useEffect(() => {
@@ -425,9 +447,10 @@ const onSubmit = async (data) => {
               />
             </Grid>
           </Grid>
-
+          <VideoView></VideoView>
           {/* Submit Button */}
           <Box mt={4} display="flex" justifyContent="center">
+              
             <Button
               variant="contained"
               color="primary"
