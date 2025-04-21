@@ -55,10 +55,10 @@ function Location({ isOpen, onClose }) {
   const navigate = useNavigate();
 
   const locations = [
-    "Hitech City", "Begumpet", "Banjara Hills", "Kukatpally", "Charminar",
-    "Madhapur", "Secunderabad", "Gachibowli", "Mehdipatnam", "Dilsukhnagar",
-    "Kompally", "Tolichowki", "Nampally"
+    "Hitech City","Begumpet","Banjara Hills","Kukatpally", "Charminar",   "Madhapur",   "Secunderabad",    "Gachibowli",
+ "Mehdipatnam","Dilsukhnagar","Kompally","Tolichowki","Nampally","Somajiguda","Jubilee Hills","Miyapur","Manikonda","Panjagutta","Kacheguda","LB Nagar","Uppal","Shamshabad","Moosapet","ECIL","Abids"
   ];
+  
 
   useEffect(() => {
     // Set current user

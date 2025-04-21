@@ -47,7 +47,7 @@ function Cards3() {
           <CardMedia
             component="img"
             height="200"
-            image="https://img.freepik.com/premium-vector/two-factor-authentication-concept-illustration_538492-58.jpg?w=740"
+            image="https://img.freepik.com/free-vector/illustration-person-scanning-qr-code-with-smartphone_23-2148621302.jpg?t=st=1745250472~exp=1745254072~hmac=feb7faf749db439323896a97f04c987a5d7bc7c89946750d2efdc4f14461675b&w=826"
             alt="Verify Parking Code"
             sx={{
               borderRadius: "4px 4px 0 0",

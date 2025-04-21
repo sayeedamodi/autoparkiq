@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Cards from "./Cards";
 import Cards2 from "./Cards2";
 import Cards3 from "./Cards3";
@@ -8,35 +8,37 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import {
   Box,
-  Button,
   Container,
   Typography,
+  IconButton,
   useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ChevronLeft, AccessTime, Person } from "@mui/icons-material";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 
-// Custom CSS for focused card carousel
+// Custom CSS for the slider
 const customSliderStyles = `
   .slick-slide {
     transition: all 0.5s ease;
-    opacity: 0.05;
-    transform: scale(0.7);
+    opacity: 0.3;
+    transform: scale(0.85);
   }
 
   .slick-center {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1.05);
   }
 
   .slick-slide > div {
-    padding: 20px;
+    padding: 16px;
+    border-radius: 16px; /* Added rounded borders */
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   }
 
   .slick-dots li button:before {
-    font-size: 12px;
-    color: #1976d2;
+    font-size: 10px;
+    color: #6c757d;
   }
 
   .slick-dots li.slick-active button:before {
@@ -51,6 +53,8 @@ const customSliderStyles = `
 
 function Help() {
   const theme = useTheme();
+  const sliderRef = React.useRef(null);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -69,125 +73,143 @@ function Help() {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-        }
+        },
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          centerPadding: "100px",
-        }
+          centerPadding: "80px",
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
           centerPadding: "40px",
-        }
-      }
-    ]
+        },
+      },
+    ],
+  };
+
+  const handleNext = () => {
+    sliderRef.current.slickNext();
+  };
+
+  const handlePrev = () => {
+    sliderRef.current.slickPrev();
   };
 
   return (
     <>
       <style>{customSliderStyles}</style>
-      <Container 
-        maxWidth={false}
+      <Box
         sx={{
-          maxWidth: "1400px",
-          pt: { xs: 4, md: 10 },
-          pb: { xs: 1, md: 1 },
-          px: { xs: 2, sm: 4, md: 2 }
+          background: `linear-gradient(135deg, ${theme.palette.background.default}, ${theme.palette.background.paper})`,
+          color: theme.palette.text.primary,
+          py: 8,
         }}
       >
-        {/* Main Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {/* <Box
-            sx={{
-              textAlign: "center",
-              mb: { xs: 3, md: 2 },
-              mt:{ xs:8 , md:3 }
-            }}
+        <Container maxWidth="lg" sx={{ textAlign: "center", px: { xs: 2, sm: 4 } }}>
+          {/* Header Section */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
             <Typography
-              variant="h3"
+              variant="h4"
+              component="h1"
+              gutterBottom
               sx={{
-                fontSize: { xs: "2rem", md: "2.5rem" },
                 fontWeight: 700,
-                mb: 1,
-                background: "linear-gradient(45deg, #007FFF, #0059B2)",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
+                color: theme.palette.text.primary,
               }}
             >
-              Parking Management System
+              Discover Our Features
             </Typography>
-            
             <Typography
-              variant="body1"
+              variant="subtitle1"
               sx={{
-                color: "text.secondary",
-                maxWidth: "600px",
-                mx: "auto",
-                mb: 1,
+                mb: 0,
+                color: theme.palette.text.secondary,
               }}
             >
-              Smart parking solutions with real-time updates
+              Swipe through to explore the cutting-edge capabilities we bring to you.
             </Typography>
+          </motion.div>
 
-            <Button
-              component={Link}
-              to="/"
-              variant="contained"
-              startIcon={<ChevronLeft />}
+          {/* Slider Section */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            <Box
               sx={{
-                borderRadius: "12px",
-                py: 1.5,
-                px: 4,
-                textTransform: "none",
-                fontSize: "1rem",
-                background: theme.palette.primary.main,
-                "&:hover": {
-                  background: theme.palette.primary.dark,
+                mt: 4,
+                position: "relative",
+                ".slick-track": {
+                  display: "flex",
+                  alignItems: "center",
                 },
               }}
             >
-              Return to Dashboard
-            </Button>
-          </Box> */}
+              {/* Navigation Buttons */}
+              <IconButton
+                onClick={handlePrev}
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "-40px",
+                  transform: "translateY(-50%)",
+                  zIndex: 10,
+                  backgroundColor: theme.palette.primary.main,
+                  color: theme.palette.primary.contrastText,
+                  boxShadow: theme.shadows[3],
+                  "&:hover": {
+                    backgroundColor: theme.palette.primary.dark,
+                  },
+                }}
+              >
+                <ChevronLeft />
+              </IconButton>
+              <IconButton
+                onClick={handleNext}
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  right: "-40px",
+                  transform: "translateY(-50%)",
+                  zIndex: 10,
+                  backgroundColor: theme.palette.secondary.main,
+                  color: theme.palette.secondary.contrastText,
+                  boxShadow: theme.shadows[3],
+                  "&:hover": {
+                    backgroundColor: theme.palette.secondary.dark,
+                  },
+                }}
+              >
+                <ChevronRight />
+              </IconButton>
 
-          {/* Carousel Section */}
-          <Box 
-            sx={{ 
-              mt: 0,
-              ".slick-track": {
-                display: "flex",
-                alignItems: "center",
-              },
-              mx: -3, // Compensate for card padding
-            }}
-          >
-            <Slider {...settings}>
-              {[Cards2, Cards, Cards3, Cards4].map((Card, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ 
-                    scale: 1.02,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  <Card />
-                </motion.div>
-              ))}
-            </Slider>
-          </Box>
-        </motion.div>
-      </Container>
+              <Slider {...settings} ref={sliderRef}>
+                {[Cards2, Cards, Cards3, Cards4].map((Card, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{
+                      scale: 1.05,
+                      transition: { duration: 0.3 },
+                    }}
+                  >
+                    <Card />
+                  </motion.div>
+                ))}
+              </Slider>
+            </Box>
+          </motion.div>
+        </Container>
+      </Box>
     </>
   );
 }

@@ -31,7 +31,7 @@ import WelcomeUser from "./WelcomeUser";
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   background: theme.palette.mode === "dark"
     ? "linear-gradient(180deg, rgba(13, 17, 23, 0.95) 0%, rgba(22, 27, 34, 0.95) 100%)"
-    : "linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.95) 100%)",
+    : "linear-gradient(180deg, rgba(189, 229, 243, 0.95) 0%, rgba(209, 216, 229, 0.95) 100%)",
   backdropFilter: "blur(10px)",
   boxShadow: theme.palette.mode === "dark" 
     ? "0 4px 20px rgba(0, 230, 255, 0.1)" 
@@ -325,23 +325,8 @@ export default function Navbar() {
                 ))}
               </Box>
 
-              {/* Search box */}
-              {!isMobile && (
-                <SearchBox>
-                  <SearchIconWrapper>
-                    <SearchIcon />
-                  </SearchIconWrapper>
-                  <StyledInputBase 
-                    placeholder="Search…" 
-                    inputProps={{ "aria-label": "search" }}
-                  />
-                </SearchBox>
-              )}
-
-              {/* Theme toggle */}
-              <IconButton onClick={toggleTheme} sx={{ ml: 1 }}>
-                {mode === "dark" ? <LightMode /> : <DarkMode />}
-              </IconButton>
+              
+              
 
               {/* Auth buttons */}
               <Box sx={{ ml: 1 }}>
@@ -410,18 +395,7 @@ export default function Navbar() {
           ))}
         </List>
 
-        <Box sx={{ p: 2 }}>
-          <SearchBox>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase 
-              placeholder="Search…" 
-              inputProps={{ "aria-label": "search" }}
-              fullWidth
-            />
-          </SearchBox>
-        </Box>
+        
       </Drawer>
 
       

@@ -1,37 +1,95 @@
-import React from "react";
+import React, { useState } from "react";
 import Exit from "./Exit";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Button,
+  Box,
+  Dialog,
+} from "@mui/material";
 
-function Cards4() {
+function Cards3() {
+  const [isVerifyOpen, setIsVerifyOpen] = useState(false); // State to manage Verify component visibility
+
+  const handleOpenVerify = () => {
+    setIsVerifyOpen(true); // Open the Verify component
+  };
+
+  const handleCloseVerify = () => {
+    setIsVerifyOpen(false); // Close the Verify component
+  };
+
   return (
-      <>
-           <div className="mt-4 my-3 p-3">
-            <div className="card w-92 bg-base-100 shadow-xl hover:scale-105 duration-200 dark:bg-slate-900 dark:text-white dark:border">
+    <>
+      <Box
+        sx={{
+          mt: 1,
+          mb: 4,
+          p: 3,
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Card
+          sx={{
+            width: 350,
+            boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.1)",
+            borderRadius: 4,
+            transition: "transform 0.3s ease-in-out",
+            "&:hover": {
+              transform: "scale(1.05)",
+            },
+          }}
+        >
+          {/* Card Media/Image */}
+          <CardMedia
+            component="img"
+            height="200"
+            image="https://img.freepik.com/premium-vector/chargeable-parking-facility-with-car-standing-front-auto-barrier-isometric-vector-illustration_223337-39761.jpg?ga=GA1.1.126040631.1745250077&semt=ais_hybrid&w=740"
+            alt="Exit car"
+            sx={{
+              borderRadius: "4px 4px 0 0",
+              objectFit: "cover",
+            }}
+          />
 
-                    <div className="card w-50 bg-base-100 shadow-xl">
-                    <figure className="px-8 pt-1">
-                      <img src="https://img.freepik.com/premium-vector/exit-right-sign-symbol-icon-green-design-vector-illustration_685751-611.jpg?w=740" alt="Shoes" className="rounded-xl pt-6" />
-                    </figure>
-                    <div className="card-body items-center text-center mt-1">
-                      <h2 className="card-title">Exit!</h2>
-                      <p>Click On <span className="font-bold text-blue-800 ">Go Now </span> And Exit from parking space </p>
-                      <div className="">
-                <a
-                  className="btn btn-outline btn-primary"
-                  onClick={() =>
-                    document.getElementById("my_modal_8").showModal()
-                  }
-                >
-                </a>
-                    
-              </div>
-                    </div>
-                    
-                </div>
-                <Exit />
-            </div>
-        </div>
-      </>
+          {/* Card Content */}
+          <CardContent sx={{ textAlign: "center" }}>
+            <Typography variant="h5" component="div" sx={{ fontWeight: "bold" }}>
+              Exit Car
+            </Typography>
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              sx={{ mt: 1, mb: 2 }}
+            >
+              Click on <span style={{ fontWeight: "bold", color: "#1976d2" }}>Exit </span> to exit parking.
+            </Typography>
+
+            {/* Button
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={handleOpenVerify} // Open the Verify component
+              sx={{
+                textTransform: "none",
+                fontWeight: "bold",
+                borderRadius: 2,
+                paddingX: 1,
+                paddingY: 1,
+              }}
+            > */}
+              <Exit onClose={handleCloseVerify} />
+            {/* </Button> */}
+          </CardContent>
+        </Card>
+      </Box>
+
+        
+    </>
   );
 }
 
-export default Cards4;
+export default Cards3;

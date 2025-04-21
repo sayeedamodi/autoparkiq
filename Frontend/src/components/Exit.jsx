@@ -94,7 +94,7 @@ function Exit() {
         color="primary"
         onClick={() => setIsDialogOpen(true)}
       >
-        EXIT
+        EXIT NOW
       </Button>
       <Dialog open={isDialogOpen} onClose={() => setIsDialogOpen(false)} fullWidth>
         <DialogTitle>

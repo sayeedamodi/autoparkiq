@@ -81,7 +81,7 @@ function Cards2() {
           <CardMedia
             component="img"
             height="300"
-            image="https://img.freepik.com/free-vector/man-looking-through-loupe-car-route-mobile-map-app-persons-hand-holding-magnifying-glass-flat-vector-illustration-gps-service-location-concept-banner-website-design-landing-web-page_74855-24914.jpg"
+            image="https://img.freepik.com/premium-vector/concept-searching-choosing-suitable-car-application-smartphone_357257-1205.jpg?w=1060"
             alt="Parking Search"
             sx={{
               objectFit: 'cover',
