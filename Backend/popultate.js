@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
 // Connect to MongoDB
-mongoose.connect("mongodb+srv://sayeedamodi111:1IwGOe6yeY4F99Tk@sayeeddbcluster.ethc6.mongodb.net/AutoParkIQ?retryWrites=true&w=majority", {
-});
+mongoose.connect("});
 
 const areaSchema = new mongoose.Schema({
   Location: String,
